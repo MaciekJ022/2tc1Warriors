@@ -208,9 +208,29 @@ public abstract class CharacterClass implements BaseClass {
 
     public abstract void down();
 
-    public abstract void leftAttack();
+    public void leftAttack(CharacterClass[] players) {
+        if (this.getX() >= Constants.CHARACTER_IMG_WIDTH) {
+            int neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH][this.getY()];
+            if (neighbourId > 0){
+                this.attack(players[neighbourId - 1]);
+            } else {
 
-    public abstract void rightAttack();
+
+            }
+        }
+    }
+
+    public void rightAttack(CharacterClass[] players) {
+        if (this.getX() < Constants.MAX_RIGHT_POSITION) {
+            int neighbourId = CharacterClass.occupiedCells[this.getX() + Constants.CHARACTER_IMG_WIDTH][this.getY()];
+            if (neighbourId > 0){
+                this.attack(players[neighbourId - 1]);
+            } else {
+                neighbourId = CharacterClass.occupiedCells[this.getX() + Constants.CHARACTER_IMG_WIDTH * 2][this.getY()];
+                this.attack(players[neighbourId - 1]);
+            }
+        }
+    }
 
     public void tryChangePosition(int newX, int newY) {
         if (occupiedCells[newX][newY] == 0) {

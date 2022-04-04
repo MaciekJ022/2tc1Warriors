@@ -1,5 +1,6 @@
 package com.company.classes.characters;
 
+import com.company.Constants;
 import com.company.classes.AttackType;
 import com.company.classes.CharacterClass;
 
@@ -32,10 +33,20 @@ public class Healer  extends CharacterClass {
     public void down() {
 
     }
-    public void leftAttack() {
-
+    public void leftAttack(CharacterClass[] players) {
+        if (this.getX() >= Constants.CHARACTER_IMG_WIDTH) {
+            int neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH][this.getY()];
+            if (neighbourId > 0){
+                this.attack(players[neighbourId - 1]);
+            }
+        }
     }
-    public void rightAttack() {
-
+    public void rightAttack(CharacterClass[] players) {
+        if (this.getX() < Constants.MAX_RIGHT_POSITION) {
+            int neighbourId = CharacterClass.occupiedCells[this.getX() + Constants.CHARACTER_IMG_WIDTH][this.getY()];
+            if (neighbourId > 0) {
+                this.attack(players[neighbourId - 1]);
+            }
+        }
     }
 }
