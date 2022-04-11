@@ -1,21 +1,31 @@
 package com.company;
 
 import com.company.classes.CharacterClass;
+import com.company.classes.MonsterClass;
+import com.company.classes.MonstersFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
 
 public class GameField extends JPanel {
     private Team team;
     private CharacterClass[] players;
+    private ArrayList <MonsterClass> monsters = new ArrayList<>();
     public GameField(Team team) {
         this.team = team;
         this.players = team.getTeamMembers();
 
         setFocusable(true);
         addKeyListener(new FieldKeyListener());
+
+        MonstersFactory monstersFactory = new MonstersFactory(monsters, this);
+        Timer timer = new Timer();
+        timer.schedule(monstersFactory, 0, 2000);
     }
 
     @Override
@@ -26,6 +36,12 @@ public class GameField extends JPanel {
             g.drawImage(player.getImage(), player.getX(), player.getY(), this);
             g.drawString("" + player.getHealthPoints(), player.getX(), player.getY() + 12);
             g.drawString("∞", player.getX(), player.getY() + 26);
+        }
+
+        for (MonsterClass monster : monsters) {
+            g.drawImage(monster.getImage(), monster.getX(), monster.getY(), this);
+            //g.drawString("" + player.getHealthPoints(), player.getX(), player.getY() + 12);
+            //g.drawString("∞", player.getX(), player.getY() + 26);
         }
     }
 
