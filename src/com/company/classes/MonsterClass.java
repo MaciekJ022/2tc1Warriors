@@ -18,7 +18,7 @@ public class MonsterClass {
     private int maxHealthPoints;
     private int x,y;
 
-    public MonsterClass( int x, int y){
+    public MonsterClass(int x, int y){
         this.id = ++MonsterCount;
         occupiedCells[x][y] = this.id;
         this.name = name;
@@ -27,6 +27,71 @@ public class MonsterClass {
         uploadImage();
 
     }
+
+    public void setHealthPoints(int healthPoints) {
+        if (healthPoints < 0) {
+            this.healthPoints = 0;
+        } else if (healthPoints > this.maxHealthPoints) {
+            this.healthPoints = this.maxHealthPoints;
+        }
+        else {
+            this.healthPoints = healthPoints;
+        }
+    }
+
+    public void setLevel(int level) {
+        if (level < 1) {
+            System.out.println("We can't lose level");
+        } else {
+            this.level = level;
+        }
+    }
+
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
+    }
+
+    public void setAttackAmount(int attackAmount) {
+        this.attackAmount = attackAmount;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMaxHealthPoints(int maxHealthPoints) {
+        this.maxHealthPoints = maxHealthPoints;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public int getManaPoints() {
+        return manaPoints;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public AttackType getAttackType() {
+        return attackType;
+    }
+
+    public int getAttackAmount() {
+        return attackAmount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMaxHealthPoints() {
+        return maxHealthPoints;
+    }
+
+
 
     private Image image, baseImage, attackLeftImage, attackRightImage;
 

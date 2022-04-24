@@ -9,3 +9,5 @@ public interface BaseClass {
     void levelUp();
     void info();
 }
+
+

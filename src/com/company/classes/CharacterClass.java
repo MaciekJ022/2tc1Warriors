@@ -4,6 +4,8 @@ import com.company.Constants;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
+import java.util.Random;
 
 public abstract class CharacterClass implements BaseClass {
     public static int[][] occupiedCells = new int[Constants.WINDOW_WIDTH][Constants.WINDOW_HEIGHT];
@@ -245,5 +247,12 @@ public abstract class CharacterClass implements BaseClass {
 
     private void reduceHealth(int amount) {
         setHealthPoints(this.healthPoints - amount);
+    }
+
+    private void Die(int X,int Y){
+        if(healthPoints <= 0){
+            // gameField.repaint by postać znikneła
+            Timer t = new Timer();
+        }
     }
 }

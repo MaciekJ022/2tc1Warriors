@@ -26,6 +26,9 @@ public class GameField extends JPanel {
         MonstersFactory monstersFactory = new MonstersFactory(monsters, this);
         Timer timer = new Timer();
         timer.schedule(monstersFactory, 0, 2000);
+//        if(MonsterCount >= 5){
+//            timer.cancel();
+//        }
     }
 
     @Override
