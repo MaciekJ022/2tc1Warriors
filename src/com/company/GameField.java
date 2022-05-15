@@ -26,9 +26,9 @@ public class GameField extends JPanel {
         MonstersFactory monstersFactory = new MonstersFactory(monsters, this);
         Timer timer = new Timer();
         timer.schedule(monstersFactory, 0, 2000);
-//        if(MonsterCount >= 5){
-//            timer.cancel();
-//        }
+        if(MonsterClass.MonsterCount >= 5){
+            timer.cancel();
+        }
     }
 
     @Override
@@ -43,7 +43,7 @@ public class GameField extends JPanel {
 
         for (MonsterClass monster : monsters) {
             g.drawImage(monster.getImage(), monster.getX(), monster.getY(), this);
-            //g.drawString("" + player.getHealthPoints(), player.getX(), player.getY() + 12);
+            g.drawString("" + monster.getHealthPoints(), monster.getX(), monster.getY() + 12);
             //g.drawString("∞", player.getX(), player.getY() + 26);
         }
     }

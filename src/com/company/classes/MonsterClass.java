@@ -5,9 +5,9 @@ import com.company.Constants;
 import javax.swing.*;
 import java.awt.*;
 
-public class MonsterClass {
+public class MonsterClass implements BaseClass {
     public static int[][] occupiedCells = new int[Constants.WINDOW_WIDTH][Constants.WINDOW_HEIGHT];
-    private static int MonsterCount = 0;
+    public static int MonsterCount = 0;
     private int healthPoints = 200;
     private int manaPoints;
     private int level;
@@ -139,5 +139,51 @@ public class MonsterClass {
 
     public void setAttackRightImage() {
         this.image = this.attackRightImage;
+    }
+
+    public void tryChangePosition(int newX, int newY) {
+        if (occupiedCells[newX][newY] == 0) {
+            occupiedCells[this.x][this.y] = 0;
+            this.x = newX;
+            this.y = newY;
+            occupiedCells[this.x][this.y] = this.id;
+        } else {
+            loseHealth(50);
+        }
+    }
+
+    @Override
+    public void attack(CharacterClass p) {
+
+    }
+
+    @Override
+    public void restoreHealth(int amount) {
+
+    }
+
+    @Override
+    public void loseHealth(int amount) {
+
+    }
+
+    @Override
+    public void restoreMana(int amount) {
+
+    }
+
+    @Override
+    public void loseMana(int amount) {
+
+    }
+
+    @Override
+    public void levelUp() {
+
+    }
+
+    @Override
+    public void info() {
+
     }
 }

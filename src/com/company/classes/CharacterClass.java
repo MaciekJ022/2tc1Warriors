@@ -249,10 +249,15 @@ public abstract class CharacterClass implements BaseClass {
         setHealthPoints(this.healthPoints - amount);
     }
 
-    private void Die(int X,int Y){
-        if(healthPoints <= 0){
-            // gameField.repaint by postać znikneła
-            Timer t = new Timer();
+    private void Die(){
+        if(healthPoints == 0){
+            int RandomX, RandomY;
+            Random rnd = new Random();
+            RandomX = rnd.nextInt(8) * 40;
+            RandomY = rnd.nextInt(5) * 80;
+            this.x = RandomX;
+            this.y = RandomY;
+            occupiedCells[this.x][this.y] = this.id;
         }
     }
 }

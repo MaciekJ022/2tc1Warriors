@@ -10,29 +10,32 @@ public class Ghoul extends MonsterClass {
         super(x,y);
 
         this.setAttackType(AttackType.PHYSICAL);
-        this.setAttackType(AttackType.PHYSICAL);
         this.setMaxHealthPoints(1000);
         this.monsterClass = "ghoul";
         this.uploadImage();
         this.setAttackAmount(100);
     }
 
-//    public void leftAttack(CharacterClass[] players) {
-//        if (this.getX() >= Constants.CHARACTER_IMG_WIDTH) {
-//            int neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH][this.getY()];
-//            if (neighbourId > 0){
-//                this.attack(players[neighbourId - 1]);
-//            }
-//        }
-//    }
-//    public void rightAttack(CharacterClass[] players) {
-//        if (this.getX() < Constants.MAX_RIGHT_POSITION) {
-//            int neighbourId = CharacterClass.occupiedCells[this.getX() + Constants.CHARACTER_IMG_WIDTH][this.getY()];
-//            if (neighbourId > 0) {
-//                this.attack(players[neighbourId - 1]);
-//            }
-//        }
-//    }
+    public void leftAttack(CharacterClass[] players) {
+        if (this.getX() >= Constants.CHARACTER_IMG_WIDTH) {
+            int neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH][this.getY()];
+            if (neighbourId > 0){
+                this.attack(players[neighbourId - 1]);
+            }
+        }
+    }
+    public void rightAttack(CharacterClass[] players) {
+        if (this.getX() < Constants.MAX_RIGHT_POSITION) {
+            int neighbourId = CharacterClass.occupiedCells[this.getX() + Constants.CHARACTER_IMG_WIDTH][this.getY()];
+            if (neighbourId > 0) {
+                this.attack(players[neighbourId - 1]);
+            }
+        }
+    }
+
+    public void followPlayers(){
+
+    }
 
 
 }
