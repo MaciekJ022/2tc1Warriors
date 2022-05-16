@@ -23,7 +23,27 @@ public class MonstersFactory extends TimerTask {
         Random rnd = new Random();
         x = rnd.nextInt(8) * 40;
         y = rnd.nextInt(5) * 80;
-        this.monsters.add(new MonsterClass( x,y ));
+        this.monsters.add(new MonsterClass(x, y) {
+            @Override
+            public void left() {
+
+            }
+
+            @Override
+            public void right() {
+
+            }
+
+            @Override
+            public void up() {
+
+            }
+
+            @Override
+            public void down() {
+
+            }
+        });
         gameField.repaint();
 
     }

@@ -4,6 +4,8 @@ import com.company.Constants;
 import com.company.classes.AttackType;
 import com.company.classes.CharacterClass;
 
+import java.util.Timer;
+
 public class Mage  extends CharacterClass {
     public Mage(String name, int x, int y, int leftKey, int rightKey, int upKey, int downKey, int leftAttackKey, int rightAttackKey) {
         super(name, x, y, leftKey, rightKey, upKey, downKey, leftAttackKey, rightAttackKey);
@@ -39,6 +41,13 @@ public class Mage  extends CharacterClass {
         int newPositionY = this.getY() < Constants.MAX_RIGHT_POSITION ? this.getY() + Constants.CHARACTER_IMG_HEIGHT : 0;
         tryChangePosition(getX(), newPositionY);
     }
+
+    public void ManaRegen(){
+        while (1 > 0){
+            restoreMana(1);
+        }
+    }
+
     public void leftAttack(CharacterClass[] players) {
         if (this.getX() >= Constants.CHARACTER_IMG_WIDTH) {
             int neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH][this.getY()];
@@ -48,6 +57,7 @@ public class Mage  extends CharacterClass {
                 neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH * 2][this.getY()];
                 this.attack(players[neighbourId - 1]);
             }
+            loseMana(Constants.MANA_COST);
         }
     }
     public void rightAttack(CharacterClass[] players) {
@@ -59,6 +69,7 @@ public class Mage  extends CharacterClass {
                 neighbourId = CharacterClass.occupiedCells[this.getX() + Constants.CHARACTER_IMG_WIDTH * 2][this.getY()];
                 this.attack(players[neighbourId - 1]);
             }
+            loseMana(Constants.MANA_COST);
         }
     }
 }

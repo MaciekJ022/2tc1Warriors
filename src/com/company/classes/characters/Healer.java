@@ -21,24 +21,44 @@ public class Healer  extends CharacterClass {
         this.uploadImage();
     }
 
+    @Override
     public void left() {
+        int newPositionX = this.getX() >= Constants.CHARACTER_IMG_WIDTH ? this.getX() - Constants.CHARACTER_IMG_WIDTH : Constants.MAX_RIGHT_POSITION;
+        tryChangePosition(newPositionX, getY());
 
     }
+
+    @Override
     public void right() {
-
+        int newPositionX = this.getX() < Constants.MAX_RIGHT_POSITION ? this.getX() + Constants.CHARACTER_IMG_WIDTH : 0;
+        tryChangePosition(newPositionX, getY());
     }
+
+    @Override
     public void up() {
-
+        int newPositionY = this.getY() < Constants.CHARACTER_IMG_HEIGHT ? Constants.MAX_RIGHT_POSITION : this.getY() - Constants.CHARACTER_IMG_HEIGHT;
+        tryChangePosition(getX(), newPositionY);
     }
+
+    @Override
     public void down() {
-
+        int newPositionY = this.getY() < Constants.MAX_RIGHT_POSITION ? this.getY() + Constants.CHARACTER_IMG_HEIGHT : 0;
+        tryChangePosition(getX(), newPositionY);
     }
+
+    public void ManaRegen(){
+        while (1 > 0){
+            restoreMana(1);
+        }
+    }
+
     public void leftAttack(CharacterClass[] players) {
         if (this.getX() >= Constants.CHARACTER_IMG_WIDTH) {
             int neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH][this.getY()];
             if (neighbourId > 0){
                 this.attack(players[neighbourId - 1]);
             }
+            restoreHealth(Constants.HEALTH_RESTORE);
         }
     }
     public void rightAttack(CharacterClass[] players) {
@@ -47,6 +67,7 @@ public class Healer  extends CharacterClass {
             if (neighbourId > 0) {
                 this.attack(players[neighbourId - 1]);
             }
+            restoreHealth(Constants.HEALTH_RESTORE);
         }
     }
 }

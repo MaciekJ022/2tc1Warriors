@@ -16,6 +16,18 @@ public class Ghoul extends MonsterClass {
         this.setAttackAmount(100);
     }
 
+    @Override
+    public void left() { }
+
+    @Override
+    public void right() { }
+
+    @Override
+    public void up() { }
+
+    @Override
+    public void down() { }
+
     public void leftAttack(CharacterClass[] players) {
         if (this.getX() >= Constants.CHARACTER_IMG_WIDTH) {
             int neighbourId = CharacterClass.occupiedCells[this.getX() - Constants.CHARACTER_IMG_WIDTH][this.getY()];
@@ -34,7 +46,7 @@ public class Ghoul extends MonsterClass {
     }
 
     public void followPlayers(){
-
+        boolean follows = false;
     }
 
 

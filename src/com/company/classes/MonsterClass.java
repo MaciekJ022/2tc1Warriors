@@ -5,7 +5,7 @@ import com.company.Constants;
 import javax.swing.*;
 import java.awt.*;
 
-public class MonsterClass implements BaseClass {
+public abstract class MonsterClass implements BaseClass {
     public static int[][] occupiedCells = new int[Constants.WINDOW_WIDTH][Constants.WINDOW_HEIGHT];
     public static int MonsterCount = 0;
     private int healthPoints = 200;
@@ -132,6 +132,14 @@ public class MonsterClass implements BaseClass {
     public void setBaseImage() {
         this.image = this.baseImage;
     }
+
+    public abstract void left();
+
+    public abstract void right();
+
+    public abstract void up();
+
+    public abstract void down();
 
     public void setAttackLeftImage() {
         this.image = this.attackLeftImage;
